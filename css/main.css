@@ -1,0 +1,152 @@
+body {
+  background-image: url('../images/t1.jpg');
+}
+.main-container {
+  margin: 0px auto;
+  margin-top: 40px;
+  position: relative;
+  padding: 15px;
+  cursor: default;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.grid-container {
+  margin: 0px auto;
+  z-index: 1;
+  text-align: center;
+  max-width: 600px;
+}
+.grid-row {
+  display: inline-block;
+  vertical-align: top;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+}
+.grid-row:first-child {
+  border-top: 1px solid #999;
+}
+.grid-row:last-child {
+  border-bottom: 1px solid #999;
+}
+.grid-row:last-child {
+  margin-bottom: 0;
+}
+.grid-row:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.grid-cell {
+  width: 48px;
+  height: 48px;
+  background: white;
+  background-image: url('../images/t2.png');
+  border: 1px solid #999;
+  margin-right: 0px;
+  float: left;
+  border-radius: 0px;
+  position: relative;
+}
+.grid-cell.lit {
+  background-color: #66FF1A;
+}
+.grid-cell.active {
+  background-color: #00F3FF;
+}
+.grid-cell:hover {
+  background-color: #B822DD;
+}
+.grid-cell.stone {
+  background-image: url('../images/blackTile.jpg');
+  background-position: -2px -2px;
+  background-size: 52px 52px;
+}
+.grid-cell .pip {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  position: absolute;
+  transform: rotate(45deg);
+}
+.grid-cell.stone-1.valid-1 .pip:nth-child(1),
+.grid-cell.stone-2.valid-1 .pip:nth-child(1),
+.grid-cell.stone-3.valid-1 .pip:nth-child(1),
+.grid-cell.stone-4.valid-1 .pip:nth-child(1),
+.grid-cell.stone-1.valid-2 .pip:nth-child(1),
+.grid-cell.stone-2.valid-2 .pip:nth-child(1),
+.grid-cell.stone-3.valid-2 .pip:nth-child(1),
+.grid-cell.stone-4.valid-2 .pip:nth-child(1),
+.grid-cell.stone-1.valid-3 .pip:nth-child(1),
+.grid-cell.stone-2.valid-3 .pip:nth-child(1),
+.grid-cell.stone-3.valid-3 .pip:nth-child(1),
+.grid-cell.stone-4.valid-3 .pip:nth-child(1),
+.grid-cell.stone-1.valid-4 .pip:nth-child(1),
+.grid-cell.stone-2.valid-4 .pip:nth-child(1),
+.grid-cell.stone-3.valid-4 .pip:nth-child(1),
+.grid-cell.stone-4.valid-4 .pip:nth-child(1) {
+  background-color: lime;
+}
+.grid-cell.stone-2.valid-2 .pip:nth-child(2),
+.grid-cell.stone-3.valid-2 .pip:nth-child(2),
+.grid-cell.stone-4.valid-2 .pip:nth-child(2),
+.grid-cell.stone-2.valid-3 .pip:nth-child(2),
+.grid-cell.stone-3.valid-3 .pip:nth-child(2),
+.grid-cell.stone-4.valid-3 .pip:nth-child(2),
+.grid-cell.stone-2.valid-4 .pip:nth-child(2),
+.grid-cell.stone-3.valid-4 .pip:nth-child(2),
+.grid-cell.stone-4.valid-4 .pip:nth-child(2) {
+  background-color: lime;
+}
+.grid-cell.stone-3.valid-3 .pip:nth-child(3),
+.grid-cell.stone-4.valid-3 .pip:nth-child(3),
+.grid-cell.stone-3.valid-4 .pip:nth-child(3),
+.grid-cell.stone-4.valid-4 .pip:nth-child(3) {
+  background-color: lime;
+}
+.grid-cell.stone-4.valid-4 .pip:nth-child(4) {
+  background-color: lime;
+}
+.grid-cell.invalid .pip {
+  background-color: red;
+}
+.grid-cell.stone-1 .pip:nth-child(1) {
+  top: 41.5%;
+  left: 41.5%;
+}
+.grid-cell.stone-2 .pip:nth-child(1) {
+  top: 25%;
+  right: 25%;
+}
+.grid-cell.stone-2 .pip:nth-child(2) {
+  bottom: 25%;
+  left: 25%;
+}
+.grid-cell.stone-3 .pip:nth-child(1) {
+  top: 25%;
+  left: 25%;
+}
+.grid-cell.stone-3 .pip:nth-child(2) {
+  top: 41.5%;
+  left: 42%;
+}
+.grid-cell.stone-3 .pip:nth-child(3) {
+  bottom: 25%;
+  right: 25%;
+}
+.grid-cell.stone-4 .pip:nth-child(1) {
+  top: 25%;
+  left: 25%;
+}
+.grid-cell.stone-4 .pip:nth-child(2) {
+  top: 25%;
+  right: 25%;
+}
+.grid-cell.stone-4 .pip:nth-child(3) {
+  bottom: 25%;
+  left: 25%;
+}
+.grid-cell.stone-4 .pip:nth-child(4) {
+  bottom: 25%;
+  right: 25%;
+}
