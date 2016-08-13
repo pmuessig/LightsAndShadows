@@ -1,5 +1,5 @@
-# Lights
-[Play](http://pmuessig.github.io/Lights/)
+# Lights And Shadows
+[Play](http://pmuessig.github.io/LightsAndShadows/)
 
 ## Developing
 install nodejs
