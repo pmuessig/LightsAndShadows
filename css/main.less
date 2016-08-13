@@ -51,7 +51,7 @@ body{
 .grid-cell{
 	width:@cell-width;
 	height:@cell-width;
-	background:white;
+	background:#aaa;
 	background-image:url('../images/t2.png');
 	border:1px solid #999;
 	margin-right: 0px;
@@ -59,11 +59,23 @@ body{
 	border-radius: 0px;	
 
 	&.lit{
-		background-color:#66FF1A;
+		background-color:white;
 	}
 
-	&.active{
-		background-color:#00F3FF;	
+	&.shadow{
+		background-color:#444;
+	}
+
+	&.active-lit.lit{
+		background-color:yellow;
+	}
+
+	&.active-lit{
+		background-color:goldenrod;
+	}
+
+	&.active-shadow{
+		background-color:#771111;
 	}
 
 	&:hover{

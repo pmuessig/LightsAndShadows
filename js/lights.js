@@ -13,15 +13,19 @@ function Lights(){
 			return;
 		}
 		console.log(this, cd);
-		this.classList.toggle("active");
 
-		cd.isActive = this.classList.contains("active");
+		if(cd.isActiveLit){
+			this.classList.toggle("active-lit");
+			this.classList.toggle("active-shadow");
+		} else if(cd.isActiveShadow){
+			this.classList.toggle("active-shadow");
+		} else {
+			this.classList.toggle("active-lit");	
+		}		
 
-		that.grid.eachCell(function(x, y, cell){
-			cell.isLit = false;
-		});
-
-		refreshLit();
+		cd.isActiveLit = this.classList.contains("active-lit");		
+		cd.isActiveShadow = this.classList.contains("active-shadow");
+		refreshLighting();
 		updatePips();
 		rerender();
 	}
@@ -47,42 +51,75 @@ function Lights(){
 		}
 	}
 
-	function tryLight(cell){
-		if(cell.isStone){
-			return false;
-		}
+	function refreshLighting(){
+		that.grid.eachCell(function(x, y, currCell){
+			
+			var checkCell;
+			var hasLit = false;
+			var hasShadow = false;
 
-		cell.isLit = true;
-		return true;
-	}
-
-	function refreshLit(){
-		that.grid.eachCell(function(x, y, cell){
-			if(cell.isActive){
-				for(i = x; i >= 0; i--){
-					if(!tryLight(that.grid.cells[i][y])){
-						break;
-					}
+			for(i = x; i >= 0; i--){
+				checkCell = that.grid.cells[i][y];
+				if(checkCell.isStone){
+					break;
 				}
 
-				for(i = x; i < gridSize; i++){
-					if(!tryLight(that.grid.cells[i][y])){
-						break;
-					}
+				if(checkCell.isActiveLit){
+					hasLit = true;
 				}
 
-				for(i = y; i >= 0; i--){
-					if(!tryLight(that.grid.cells[x][i])){
-						break;
-					}
-				}
-
-				for(i = y; i < gridSize; i++){
-					if(!tryLight(that.grid.cells[x][i])){
-						break;
-					}
+				if(checkCell.isActiveShadow){
+					hasShadow = true;
 				}
 			}
+
+			for(i = x; i < gridSize; i++){
+				checkCell = that.grid.cells[i][y];
+				if(checkCell.isStone){
+					break;
+				}
+
+				if(checkCell.isActiveLit){
+					hasLit = true;
+				}
+
+				if(checkCell.isActiveShadow){
+					hasShadow = true;
+				}
+			}
+
+			for(i = y; i >= 0; i--){
+				checkCell = that.grid.cells[x][i];
+				if(checkCell.isStone){
+					break;
+				}
+
+				if(checkCell.isActiveLit){
+					hasLit = true;
+				}
+
+				if(checkCell.isActiveShadow){
+					hasShadow = true;
+				}
+			}
+
+			for(i = y; i < gridSize; i++){
+				checkCell = that.grid.cells[x][i];
+				if(checkCell.isStone){
+					break;
+				}
+
+				if(checkCell.isActiveLit){
+					hasLit = true;
+				}
+
+				if(checkCell.isActiveShadow){
+					hasShadow = true;
+				}
+			}
+
+			currCell.isLit = hasLit && !hasShadow;
+			currCell.isShade = !hasLit && hasShadow;
 		});
 	}
 
@@ -130,7 +167,7 @@ function Lights(){
 				return;
 			}
 			var neighborCell = that.grid.cells[index.x][index.y];
-			if(neighborCell.isLit || neighborCell.isActive){
+			if(neighborCell.isLit){
 				count++;
 			}
 		});
@@ -142,7 +179,12 @@ function Lights(){
 		that.grid.eachCell(function(x, y, cell){
 			if(cell.isLit){
 				cell.$el.classList.add('lit');
+				cell.$el.classList.remove('shadow');
+			} else if(cell.isShade){
+				cell.$el.classList.remove('lit');
+				cell.$el.classList.add('shadow');
 			} else {
+				cell.$el.classList.remove('shadow');
 				cell.$el.classList.remove('lit');
 			}
 		});
@@ -166,13 +208,13 @@ function Lights(){
 	//set our scene
 	setStone(1,1,4);
 	setStone(4,1);
-	setStone(8,1,2);
+	setStone(8,0,2);
 
 	setStone(2,2);
 	setStone(8,2);
 
-	setStone(4,3);
-	setStone(5,3,3);
+	
+	setStone(5,3,1);
 	
 	setStone(4,6,3);
 	setStone(5,6);

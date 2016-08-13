@@ -40,7 +40,7 @@ body {
 .grid-cell {
   width: 48px;
   height: 48px;
-  background: white;
+  background: #aaa;
   background-image: url('../images/t2.png');
   border: 1px solid #999;
   margin-right: 0px;
@@ -49,10 +49,19 @@ body {
   position: relative;
 }
 .grid-cell.lit {
-  background-color: #66FF1A;
+  background-color: white;
 }
-.grid-cell.active {
-  background-color: #00F3FF;
+.grid-cell.shadow {
+  background-color: #444;
+}
+.grid-cell.active-lit.lit {
+  background-color: yellow;
+}
+.grid-cell.active-lit {
+  background-color: goldenrod;
+}
+.grid-cell.active-shadow {
+  background-color: #771111;
 }
 .grid-cell:hover {
   background-color: #B822DD;
